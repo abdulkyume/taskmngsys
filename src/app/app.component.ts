@@ -9,21 +9,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  attachement: string = '';
   constructor(private ApiService: ApiService, private http: HttpClient) {}
+  setattachment(val: any) {
+    this.attachement = val;
+  }
   getBase64(evt: any) {
-    var f = evt.target.files[0]; // FileList object
+    var f = evt.target.files[0];
     var reader = new FileReader();
-    // Closure to capture the file information.
     reader.onload = (function (theFile) {
       return function (e: any) {
         var binaryData = e.target.result;
-        //Converting Binary Data to base 64
         var base64String = window.btoa(binaryData);
-        //showing file converted to base64
         console.log(base64String);
       };
     })(f);
-    // Read in the image file as a data URL.
     reader.readAsBinaryString(f);
   }
   profileForm = new FormGroup({
