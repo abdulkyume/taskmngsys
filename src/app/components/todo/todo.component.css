@@ -1,0 +1,7 @@
+.todo {
+  height: 70vh;
+}
+.todos {
+  height: 100%;
+  overflow-y: auto;
+}

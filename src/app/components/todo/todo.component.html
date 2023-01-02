@@ -1,0 +1,205 @@
+<div class="w-100 border border-dark mt-5 todo">
+  <div class="border-bottom border-dark text-center fw-bold display-6">
+    To-do
+  </div>
+  <div class="todos">
+    <div class="p-2">
+      <div *ngFor="let item of todos" class="my-4 border-danger border ps-2">
+        <div>Title: {{ item.title }}</div>
+        <div>
+          Description {{ item.description.substring(0, 10) }}...
+          <a
+            class="btn btn-primary me-auto ms-auto m-0"
+            data-bs-toggle="modal"
+            href="#modal"
+            role="button"
+            (click)="openitem(item)"
+            >See More</a
+          >
+          <br />
+        </div>
+        <div>Starting Date: {{ item.sdate }}</div>
+        <div>Ending Date: {{ item.edate }}</div>
+        <div>Priority: {{ item.priority }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modal"
+  aria-hidden="true"
+  aria-labelledby="..."
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <form [formGroup]="profileForm" (ngSubmit)="getformval($event)">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+            maxlength="100"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="titdescriptionle" class="form-label">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            formControlName="description"
+            maxlength="150"
+            required
+          />
+        </div>
+        <label class="form-label">Priority</label>
+        <div class="mb-3 form-check">
+          <label for="low" class="form-check-label">Low</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="low"
+            formControlName="priority"
+            aria-describedby="emailHelp"
+            value="low"
+            required
+          />
+          <br />
+          <label for="Medium" class="form-check-label">Medium</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="Medium"
+            formControlName="priority"
+            aria-describedby="emailHelp"
+            value="Medium"
+            required
+          />
+          <br />
+          <label for="High" class="form-check-label">High</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="High"
+            formControlName="priority"
+            aria-describedby="emailHelp"
+            value="High"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="sdate" class="form-label">Start Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="sdate"
+            formControlName="sdate"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="edate" class="form-label">End Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="edate"
+            formControlName="edate"
+            required
+          />
+        </div>
+        <label class="form-label">Status</label>
+        <div class="mb-3 form-check">
+          <label for="todo" class="form-check-label">To-do</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="todo"
+            formControlName="status"
+            value="todo"
+            required
+          />
+          <br />
+          <label for="inprogress" class="form-check-label">In Progress</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="inprogress"
+            formControlName="status"
+            value="inprogress"
+            required
+          />
+          <br />
+          <label for="done" class="form-check-label">Done</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            id="done"
+            formControlName="status"
+            value="done"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="assignperson" class="form-label">Assigned Person</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="assignperson"
+            formControlName="assignperson"
+            required
+          >
+            <option selected>Select Person</option>
+            <option value="1">Person1</option>
+            <option value="2">Person2</option>
+            <option value="3">Person3</option>
+          </select>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="attachment" class="form-label">Attachment</label>
+          <input
+            type="file"
+            class="form-control"
+            id="attachment"
+            formControlName="attachment"
+            accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+          />
+        </div> -->
+        <div class="mb-3">
+          <label for="" class="form-label"> SubTask </label>
+          <div class="mb-3">
+            <label for="stitle" class="form-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="stitle"
+              formControlName="stitle"
+              maxlength="100"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="stitdescriptionle" class="form-label"
+              >Description</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="sdescription"
+              formControlName="sdescription"
+              maxlength="150"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- Toogle to second dialog -->
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
